@@ -17,8 +17,8 @@ connectDB();
 
 
 // import routes here
-app.use("/api", apiRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api", apiRoutes);
 
 // protected route
 app.get("/api/admin", verifyToken, allowRoles("admin"), (req, res) => {
