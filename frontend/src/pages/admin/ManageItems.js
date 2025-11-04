@@ -1,5 +1,5 @@
 // export default function ManageItems() {
-//   return <h1 className="text-2xl font-bold text-amber-700">Manage Items (Coming soon)</h1>;
+//   return <h1 className="text-2xl font-bold text-red-700">Manage Items (Coming soon)</h1>;
 // }
 import React, { useEffect, useState } from "react";
 import api from "../../api/axios";
@@ -45,7 +45,7 @@ export default function ManageItems() {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-semibold mb-4 text-amber-800">Manage Menu Items</h1>
+      <h1 className="text-2xl font-semibold mb-4 text-red-800">Manage Menu Items</h1>
       <div className="grid md:grid-cols-3 sm:grid-cols-2 gap-4">
         {items.map((item) => (
           <div
@@ -59,7 +59,7 @@ export default function ManageItems() {
               alt={item.name}
               className="w-full h-32 object-cover rounded-lg mb-3"
             />
-            <h3 className="text-lg font-semibold text-amber-900">{item.name}</h3>
+            <h3 className="text-lg font-semibold text-black-900">{item.name}</h3>
             {item.description && (
               <p className="text-sm text-gray-600 line-clamp-2 mb-2">
                 {item.description}

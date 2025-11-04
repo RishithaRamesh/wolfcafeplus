@@ -21,7 +21,7 @@ export default function MenuItemCard({ item }) {
         alt={item.name}
         className="w-full h-40 object-cover rounded-xl mb-3"
       />
-      <h3 className="text-lg font-semibold text-amber-900">{item.name}</h3>
+      <h3 className="text-lg font-semibold text-red-900">{item.name}</h3>
       {item.description && (
         <p className="text-sm text-gray-600 line-clamp-2">{item.description}</p>
       )}
@@ -50,7 +50,7 @@ export default function MenuItemCard({ item }) {
         ) : (
           <button
             onClick={() => addToCart(item)}
-            className="bg-amber-700 hover:bg-amber-800 text-white font-medium px-6 py-2 rounded-xl transition"
+            className="bg-red-700 hover:bg-red-800 text-white font-medium px-6 py-2 rounded-xl transition"
           >
             Add to Cart
           </button>
