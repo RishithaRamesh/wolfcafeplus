@@ -38,7 +38,7 @@ export default function Cart() {
             <button onClick={clearCart} className="bg-gray-200 px-4 py-2 rounded-xl">
               Clear
             </button>
-            <a href="/checkout" className="bg-blue-600 text-white px-4 py-2 rounded-xl">
+            <a href="/checkout" className="bg-red-600 text-white px-4 py-2 rounded-xl">
               Checkout
             </a>
           </div>

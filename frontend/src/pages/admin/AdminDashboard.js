@@ -31,17 +31,17 @@ export default function AdminDashboard() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold text-amber-700 mb-8">Admin Dashboard</h1>
+      <h1 className="text-3xl font-bold text-gray-700 mb-8">Admin Dashboard</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-        <StatCard icon={<FaUser />} title="Users" value={stats.totalUsers} color="bg-amber-100" />
-        <StatCard icon={<FaCoffee />} title="Menu Items" value={stats.totalMenuItems} color="bg-yellow-100" />
-        <StatCard icon={<FaShoppingCart />} title="Orders" value={stats.totalOrders} color="bg-orange-100" />
+        <StatCard icon={<FaUser />} title="Users" value={stats.totalUsers} color="bg-gray-200" />
+        <StatCard icon={<FaCoffee />} title="Menu Items" value={stats.totalMenuItems} color="bg-gray-200" />
+        <StatCard icon={<FaShoppingCart />} title="Orders" value={stats.totalOrders} color="bg-gray-200" />
         <StatCard
           icon={<FaMoneyBillWave />}
           title="Revenue"
           value={`$${stats.totalRevenue.toFixed(2)}`}
-          color="bg-green-100"
+          color="bg-gray-200"
         />
       </div>
     </div>
@@ -50,10 +50,10 @@ export default function AdminDashboard() {
 
 function StatCard({ icon, title, value, color }) {
   return (
-    <div className={`p-6 rounded-xl shadow-md flex flex-col items-center justify-center ${color}`}>
+    <div className={`p-6 rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.15)] flex flex-col items-center justify-center ${color}`}>
       <div className="text-3xl mb-2 text-gray-700">{icon}</div>
       <h2 className="text-lg font-semibold text-gray-700">{title}</h2>
-      <p className="text-2xl font-bold text-amber-700 mt-1">{value}</p>
+      <p className="text-2xl font-bold text-black-700 mt-1">{value}</p>
     </div>
   );
 }
