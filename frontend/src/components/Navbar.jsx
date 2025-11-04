@@ -1,13 +1,14 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import { useModal } from "../context/ModalContext";
 import api from "../api/axios";
 import { ShoppingCart } from "lucide-react"; // cart icon
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"></link>
 
 export default function Navbar() {
   const { user, logout, login } = useContext(AuthContext);
-  const [showModal, setShowModal] = useState(false);
+  const { showLogin, showLoginModal, hideLoginModal } = useModal();
   const [isSignup, setIsSignup] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", password: "" });
   const [error, setError] = useState("");
@@ -33,7 +34,7 @@ export default function Navbar() {
       } else {
         // --- Login (existing AuthContext logic) ---
         await login(formData.email, formData.password);
-        setShowModal(false);
+        hideLoginModal();
       }
     } catch (err) {
       console.error(err);
@@ -93,7 +94,7 @@ export default function Navbar() {
             </>
           ) : (
             <button
-              onClick={() => setShowModal(true)}
+              onClick={() => showLoginModal()}
               className="bg-white hover:bg-gray-100 text-red-700 px-3 py-1 rounded-full font-semibold"
             >
               Login
@@ -103,11 +104,11 @@ export default function Navbar() {
       </nav>
 
       {/* 🔸 Login / Signup Modal (unchanged) */}
-      {showModal && (
+      {showLogin && (
         <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-[100]">
           <div className="bg-white p-6 rounded-lg w-80 shadow-lg relative">
             <button
-              onClick={() => setShowModal(false)}
+              onClick={() => hideLoginModal()}
               className="absolute top-2 right-3 text-gray-500 text-lg font-bold"
             >
               ×

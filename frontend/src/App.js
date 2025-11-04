@@ -14,37 +14,40 @@ import AdminLayout from "./pages/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import ManageOrders from "./pages/admin/ManageOrders";
 import ManageItems from "./pages/admin/ManageItems";
+import { ModalProvider } from "./context/ModalContext";
 
 function App() {
   return (
     <AuthProvider>
-      <CartProvider>
-        <Router>
-          <Navbar />
-          <Routes>
-            {/* 🌐 Public routes */}
-            <Route path="/" element={<Home />} />
-            <Route path="/menu" element={<Menu />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/login" element={<Login />} />
+      <ModalProvider>
+        <CartProvider>
+          <Router>
+            <Navbar />
+            <Routes>
+              {/* 🌐 Public routes */}
+              <Route path="/" element={<Home />} />
+              <Route path="/menu" element={<Menu />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/login" element={<Login />} />
 
-            {/* 🔒 Authenticated (non-admin) protected routes */}
-            <Route element={<ProtectedRoute />}>
+              {/* 🔒 Authenticated (non-admin) protected routes */}
+              <Route element={<ProtectedRoute />}>
               {/* example placeholder; you can add user-only routes here */}
               {/* <Route path="/profile" element={<UserProfile />} /> */}
             </Route>
 
-            {/* 🧑‍💼 Admin-only protected routes */}
-            <Route element={<AdminProtectedRoute />}>
+              {/* 🧑‍💼 Admin-only protected routes */}
+              <Route element={<AdminProtectedRoute />}>
               <Route path="/admin" element={<AdminLayout />}>
-                <Route index element={<AdminDashboard />} />
-                <Route path="orders" element={<ManageOrders />} />
-                <Route path="items" element={<ManageItems />} />
-              </Route>
+                  <Route index element={<AdminDashboard />} />
+                  <Route path="orders" element={<ManageOrders />} />
+                  <Route path="items" element={<ManageItems />} />
+                </Route>
             </Route>
-          </Routes>
-        </Router>
-      </CartProvider>
+            </Routes>
+          </Router>
+        </CartProvider>
+      </ModalProvider>
     </AuthProvider>
   );
 }
