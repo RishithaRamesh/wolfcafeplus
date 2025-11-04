@@ -4,16 +4,17 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
 import Cart from "./pages/Cart";
-// import AdminDashboard from "./pages/AdminDashboard";
 import Login from "./pages/Login";
 import { CartProvider } from "./context/CartContext";
 import AuthProvider from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
+import AdminProtectedRoute from "./components/AdminProtectedRoute";
 
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import ManageOrders from "./pages/admin/ManageOrders";
 import ManageItems from "./pages/admin/ManageItems";
+import { ModalProvider } from "./context/ModalContext";
 
 // ✅ Wrapper to handle conditional padding
 function PageWrapper({ children }) {
@@ -26,32 +27,35 @@ function PageWrapper({ children }) {
 function App() {
   return (
     <AuthProvider>
-      <CartProvider>
-        <Router>
-          <Navbar />
-          <PageWrapper>
+      <ModalProvider>
+        <CartProvider>
+          <Router>
+            <Navbar />
             <Routes>
-              {/* public routes */}
+              {/* 🌐 Public routes */}
               <Route path="/" element={<Home />} />
               <Route path="/menu" element={<Menu />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/login" element={<Login />} />
 
-              {/* protected routes */}
-              {/* <Route element={<ProtectedRoute />}>
-                <Route path="/admin" element={<AdminDashboard />} />
-              </Route> */}
+              {/* 🔒 Authenticated (non-admin) protected routes */}
+              <Route element={<ProtectedRoute />}>
+              {/* example placeholder; you can add user-only routes here */}
+              {/* <Route path="/profile" element={<UserProfile />} /> */}
+            </Route>
 
-              {/* Admin nested routes */}
+              {/* 🧑‍💼 Admin-only protected routes */}
+              <Route element={<AdminProtectedRoute />}>
               <Route path="/admin" element={<AdminLayout />}>
-                <Route index element={<AdminDashboard />} />
-                <Route path="orders" element={<ManageOrders />} />
-                <Route path="items" element={<ManageItems />} />
-              </Route>
+                  <Route index element={<AdminDashboard />} />
+                  <Route path="orders" element={<ManageOrders />} />
+                  <Route path="items" element={<ManageItems />} />
+                </Route>
+            </Route>
             </Routes>
-          </PageWrapper>
-        </Router>
-      </CartProvider>
+          </Router>
+        </CartProvider>
+      </ModalProvider>
     </AuthProvider>
   );
 }
