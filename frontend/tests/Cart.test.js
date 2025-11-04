@@ -1,7 +1,7 @@
 // src/tests/Cart.test.js
 import { render, screen, fireEvent } from "@testing-library/react";
-import { useCart } from "../context/CartContext";
-import Cart from "../pages/Cart";
+import { useCart } from "../src/context/CartContext";
+import Cart from "../src/pages/Cart";
 
 jest.mock("../context/CartContext", () => ({
   useCart: jest.fn(),
