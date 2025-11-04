@@ -1,13 +1,21 @@
-// src/context/CartContext.js
 import { createContext, useContext, useState } from "react";
+import { AuthContext } from "./AuthContext";
+import { useModal } from "./ModalContext";
 
 const CartContext = createContext();
 export const useCart = () => useContext(CartContext);
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+  const { user } = useContext(AuthContext);
+  const { showLoginModal } = useModal();
 
   const addToCart = (item) => {
+    if (!user) {
+      showLoginModal();
+      return;
+    }
+
     setCart((prev) => {
       const existing = prev.find((p) => p.id === item.id);
       return existing
