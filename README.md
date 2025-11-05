@@ -17,7 +17,7 @@ _Showing new functionality: role-based permissions, order tracking, and real-tim
 ---
 
 ## 🚀 Project Overview
-**WolfCafe+** is a full-stack MERN application built for CSC 326 that integrates menu management, ordering, and personalized recommendations across **Admin**, **Staff**, and **Customer** roles.
+**WrikiCafe+** is a full-stack MERN application built for CSC 326 that integrates menu management, ordering, and personalized recommendations across **Admin**, **Staff**, and **Customer** roles.
 
 | Role | Capabilities |
 |------|---------------|
@@ -49,8 +49,8 @@ See [INSTALL.md](INSTALL.md) for full setup details.
 In short:
 
 ```bash
-git clone https://github.com/RishithaRamesh/wolfcafeplus.git
-cd wolfcafeplus
+git clone https://github.com/RishithaRamesh/WrikiCafeplus.git
+cd WrikiCafeplus
 npm install && cd frontend && npm install
 npm run dev
 ```
@@ -94,4 +94,4 @@ This project is released under the terms described in [LICENSE.md](LICENSE.md).
 
 ---
 
-© 2025 WolfCafe+ Team 16 · North Carolina State University
+© 2025 WrikiCafe+ Team 16 · North Carolina State University
