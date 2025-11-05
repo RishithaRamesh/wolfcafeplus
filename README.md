@@ -1,8 +1,8 @@
 # 🐺 WRIKICAFE+
 
 [![DOI](https://zenodo.org/badge/1080009756.svg)](https://doi.org/10.5281/zenodo.17538134)
-[![Build](https://github.com/rishitharamesh/wrikicafe/actions/workflows/build.yml/badge.svg)]
-[![Lint](https://github.com/rishitharamesh/wrikicafe/actions/workflows/lint.yml/badge.svg)]
+[![Build](https://github.com/rishitharamesh/wolfcafeplus/actions/workflows/build.yml/badge.svg)]
+[![Lint](https://github.com/rishitharamesh/wolfcafeplus/actions/workflows/lint.yml/badge.svg)]
 [![Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://prettier.io/)
 ![React](https://img.shields.io/badge/React-19.2.0-61dafb?logo=react&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-4.0-646cff?logo=vite&logoColor=white)
