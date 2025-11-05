@@ -5,10 +5,7 @@
 ![Vitest](https://img.shields.io/badge/Vitest-0.28.0-6DA83F?logo=vitest&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-18%2B-43853D?logo=node.js&logoColor=white)
 ![License](https://img.shields.io/badge/License-ISC-blue)
-![tests](https://img.shields.io/badge/tests-95%2B%20passing-brightgreen)
-![coverage](https://img.shields.io/badge/coverage-80%25-green)
 ![formatter](https://img.shields.io/badge/formatter-Prettier-ff69b4)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1234567.svg)](https://doi.org/10.5281/zenodo.1234567)
 > A smarter, personalized, and social campus food-ordering system for NC State University.
 
 ---
@@ -41,8 +38,6 @@ _Showing new functionality: role-based permissions, order tracking, and real-tim
 ---
 
 ## 📈 Next Milestones (v2)
-- [ ] Frontend test automation (React Testing Library)  
-- [ ] Code coverage ≥ 80 % with GitHub Actions badge  
 - [ ] AI-powered “Surprise Me” recommendations  
 - [ ] Group shared cart and budget/time optimizers  
 - [ ] Accessibility audit and performance enhancements  
