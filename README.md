@@ -63,9 +63,9 @@ npm run dev
 ## 👥 Team 16
 | Name | GitHub |
 |------|--------|
-| **Dhruva Kamble** | [@dhruvakamble](https://github.com/dhruvakamble) |
+| **Dhruva Kamble** | [@dhruvakamble](https://github.com/Dhruva0101) |
 | **Rishitha Ramesh** |  [@RishithaRamesh](https://github.com/RishithaRamesh) |
-| **Rujuta Budke** |  [@rujutabudke](https://github.com/rujutabudke) |
+| **Rujuta Budke** |  [@rujutabudke](https://github.com/rujuta13) |
 
 ---
 
