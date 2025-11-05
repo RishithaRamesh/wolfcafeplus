@@ -23,8 +23,6 @@ _Showing new functionality: role-based permissions, order tracking, and real-tim
 | **Staff** | Add menu items, fulfill orders, update inventory |
 | **Customer** | Browse menu, add to cart, checkout, receive pickup alerts |
 
-> Built with accessibility, security, and scalability in mind — aligned with NC State CSC 326 “Done Criteria.”
-
 ---
 
 ## 🧩 Key Features (v1)
