@@ -12,11 +12,32 @@ import menuRoutes from "./api/routes/menuRoutes.js";
 import cartRoutes from "./api/routes/cartRoutes.js";
 import orderRoutes from "./api/routes/orderRoutes.js";
 import adminRoutes from "./api/routes/adminRoutes.js";
+
 dotenv.config();
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+
+// Explicitly allow frontend origins (production + local dev)
+const allowedOrigins = [
+  "https://wrikicafe-vqm0.onrender.com", // deployed frontend
+  "http://localhost:3000"                // local dev
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        console.warn("Blocked by CORS:", origin);
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+    methods: ["GET", "POST", "PATCH", "DELETE", "PUT"],
+  })
+);
 
 connectDB();
 
@@ -26,18 +47,19 @@ app.use("/api/cart", cartRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/auth", authRoutes);
-// Protected routes
+
+// Protected route example
 app.get("/api/admin", verifyToken, allowRoles("admin"), (req, res) => {
   res.send("Welcome Admin!");
 });
 
 // ---------- SOCKET.IO SETUP ----------
-const server = http.createServer(app); 
+const server = http.createServer(app);
 export const io = new Server(server, {
   cors: {
-    origin: "*", // or http://localhost:3000
-    methods: ["GET", "POST", "PATCH", "DELETE"]
-  }
+    origin: allowedOrigins,
+    methods: ["GET", "POST", "PATCH", "DELETE"],
+  },
 });
 
 io.on("connection", (socket) => {
