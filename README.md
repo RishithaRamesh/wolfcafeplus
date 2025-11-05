@@ -1,9 +1,14 @@
 # 🐺 WolfCafe+
 
+![React](https://img.shields.io/badge/React-19.2.0-61dafb?logo=react&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-4.0-646cff?logo=vite&logoColor=white)
+![Vitest](https://img.shields.io/badge/Vitest-0.28.0-6DA83F?logo=vitest&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-18%2B-43853D?logo=node.js&logoColor=white)
+![License](https://img.shields.io/badge/License-ISC-blue)
+![tests](https://img.shields.io/badge/tests-95%2B%20passing-brightgreen)
+![coverage](https://img.shields.io/badge/coverage-80%25-green)
+![formatter](https://img.shields.io/badge/formatter-Prettier-ff69b4)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1234567.svg)](https://doi.org/10.5281/zenodo.1234567)
-[![Style Check – ESLint](https://img.shields.io/badge/code%20style-eslint-blue.svg)](https://eslint.org/)
-[![Formatter – Prettier](https://img.shields.io/badge/formatter-prettier-ff69b4.svg)](https://prettier.io/)
-[![Syntax – Babel](https://img.shields.io/badge/syntax-babel-yellow.svg)](https://babeljs.io/)
 > A smarter, personalized, and social campus food-ordering system for NC State University.
 
 ---
