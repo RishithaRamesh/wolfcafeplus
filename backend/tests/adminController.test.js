@@ -4,13 +4,13 @@ import User from "../api/models/User.js";
 import MenuItem from "../api/models/MenuItem.js";
 import Order from "../api/models/Order.js";
 
-// --- manual mock stubs ---
+// --- create spies for model methods ---
 jest.spyOn(User, "countDocuments");
 jest.spyOn(MenuItem, "countDocuments");
 jest.spyOn(Order, "countDocuments");
 jest.spyOn(Order, "aggregate");
 
-
+// --- mock entire modules so Jest handles imports cleanly ---
 jest.mock("../api/models/User.js");
 jest.mock("../api/models/MenuItem.js");
 jest.mock("../api/models/Order.js");
@@ -39,9 +39,10 @@ describe("AdminController → getAdminStats", () => {
     expect(MenuItem.countDocuments).toHaveBeenCalled();
     expect(Order.countDocuments).toHaveBeenCalled();
     expect(Order.aggregate).toHaveBeenCalledWith([
-      { $group: { _id: null, total: { $sum: "$totalPrice" } } }
+      { $group: { _id: null, total: { $sum: "$totalPrice" } } },
     ]);
 
+    expect(res.status).not.toHaveBeenCalled();
     expect(res.json).toHaveBeenCalledWith({
       totalUsers: 10,
       totalMenuItems: 5,
@@ -77,5 +78,93 @@ describe("AdminController → getAdminStats", () => {
       message: "Error fetching stats",
       error: "Database failure",
     });
+  });
+
+  it("🧩 should handle aggregate returning malformed data", async () => {
+    User.countDocuments.mockResolvedValue(1);
+    MenuItem.countDocuments.mockResolvedValue(2);
+    Order.countDocuments.mockResolvedValue(3);
+    Order.aggregate.mockResolvedValue([{ wrongKey: 500 }]); // missing total
+
+    await getAdminStats(req, res);
+
+    // totalRevenue will be undefined since total is missing
+    expect(res.json).toHaveBeenCalledWith({
+      totalUsers: 1,
+      totalMenuItems: 2,
+      totalOrders: 3,
+      totalRevenue: undefined,
+    });
+  });
+
+  it("🧩 should handle partial data (some counts undefined)", async () => {
+    User.countDocuments.mockResolvedValue(undefined);
+    MenuItem.countDocuments.mockResolvedValue(4);
+    Order.countDocuments.mockResolvedValue(10);
+    Order.aggregate.mockResolvedValue([{ total: 50 }]);
+
+    await getAdminStats(req, res);
+
+    expect(res.json).toHaveBeenCalledWith({
+      totalUsers: undefined,
+      totalMenuItems: 4,
+      totalOrders: 10,
+      totalRevenue: 50,
+    });
+  });
+
+  it("🧩 should handle one model failing individually", async () => {
+    User.countDocuments.mockResolvedValue(3);
+    MenuItem.countDocuments.mockRejectedValue(new Error("menu fail"));
+    Order.countDocuments.mockResolvedValue(7);
+    Order.aggregate.mockResolvedValue([{ total: 20 }]);
+
+    await getAdminStats(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({
+        message: "Error fetching stats",
+      })
+    );
+  });
+
+  it("🧩 should handle aggregate returning null or non-array", async () => {
+    User.countDocuments.mockResolvedValue(3);
+    MenuItem.countDocuments.mockResolvedValue(2);
+    Order.countDocuments.mockResolvedValue(1);
+    Order.aggregate.mockResolvedValue(null);
+
+    await getAdminStats(req, res);
+
+    // Controller crashes and returns 500 with error info
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({
+        message: "Error fetching stats",
+        error: expect.stringContaining("Cannot read properties of null"),
+      })
+    );
+  });
+
+  it("🧩 should catch synchronous unexpected error", async () => {
+    // temporarily replace with sync-throwing fn
+    const originalFn = User.countDocuments;
+    User.countDocuments.mockImplementation(() => {
+      throw new Error("Sync crash");
+    });
+
+    await getAdminStats(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({
+        message: "Error fetching stats",
+        error: "Sync crash",
+      })
+    );
+
+    // restore
+    User.countDocuments = originalFn;
   });
 });
