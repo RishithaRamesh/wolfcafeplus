@@ -1,6 +1,6 @@
 # 🧾 WrikiCafe+ Release Notes
 
-This document summarizes all official releases of **wrikicafe**, including version numbers, dates, and key changes.
+This document summarizes all official releases of **WrikiCafe+**, including version numbers, dates, and key changes.
 
 ---
 
@@ -61,4 +61,4 @@ This document summarizes all official releases of **wrikicafe**, including versi
 
 ---
 
-> 🩵 **wrikicafe** — continually brewing smarter, faster café experiences ☕
+> 🩵 **WrikiCafe+** — continually brewing smarter, faster café experiences ☕

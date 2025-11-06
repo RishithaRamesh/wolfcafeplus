@@ -1,6 +1,6 @@
-# 🤝 Contributing to wrikicafe
+# 🤝 Contributing to WrikiCafe+
 
-Thank you for your interest in contributing to **wrikicafe**!  
+Thank you for your interest in contributing to **WrikiCafe+**!  
 We welcome contributions of all kinds — from fixing bugs and improving documentation to adding new features.
 
 

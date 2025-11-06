@@ -30,7 +30,7 @@ Protected routes require a valid JWT token in the header:
 
 Response
 
-{ "message": "☕ wrikicafe backend running..." }
+{ "message": "☕ WrikiCafe+ backend running..." }
 
 ## 🔐 Auth Routes
 
