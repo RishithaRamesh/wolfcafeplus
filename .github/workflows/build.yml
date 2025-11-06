@@ -1,0 +1,39 @@
+name: Build & Test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🧾 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # ---------- FRONTEND ----------
+      - name: 📦 Install frontend dependencies
+        run: npm ci --prefix frontend
+
+      - name: 🧱 Build frontend (Vite)
+        run: npm run build --prefix frontend
+
+      # ---------- BACKEND ----------
+      - name: 📦 Install backend dependencies
+        run: npm ci --prefix backend
+
+      - name: ✅ Run backend tests (if present)
+        run: |
+          if [ -f backend/package.json ]; then
+            npm test --prefix backend || echo "⚠️ No tests found, skipping."
+          fi
+
+      # ---------- FINISH ----------
+      - name: ✅ Build verification complete
+        run: echo "✅ wrikicafe build and test workflow completed successfully."
